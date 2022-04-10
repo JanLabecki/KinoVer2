@@ -1,0 +1,91 @@
+package org.example.kino.model;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
+public class MovieReservation {
+
+    private static int counter = 1;
+    private int id;
+    private int movieId;
+    private LocalDateTime startScreening;
+    private int clientId;
+    private int ticketAmount;
+    int totalPrice;
+    boolean paid;
+
+    public MovieReservation(int movieId, LocalDateTime startScreening, int clientId, int ticketAmount) {
+        this.id = counter++;
+        this.movieId = movieId;
+        this.startScreening = startScreening;
+        this.clientId = clientId;
+        this.ticketAmount = ticketAmount;
+    }
+
+    public MovieReservation(String[] properties) {
+        this.id = Integer.parseInt(properties[0]);
+        this.movieId = Integer.parseInt(properties[1]);
+        this.startScreening = LocalDateTime.parse(properties[2]);
+        this.clientId = Integer.parseInt(properties[4]);
+        this.totalPrice = Integer.parseInt(properties[5]);
+        this.paid = Boolean.parseBoolean(properties[6]);
+        this.ticketAmount = Integer.parseInt(properties[7]);
+
+
+    }
+
+    public int getTicketAmount() {
+        return ticketAmount;
+    }
+
+    public void setTicketAmount(int ticketAmount) {
+        this.ticketAmount = ticketAmount;
+    }
+
+    public static void setCounter(int counter) {
+        MovieReservation.counter = counter;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public boolean czyOplacono() {
+        return paid;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getStartScreening() {
+        return startScreening;
+    }
+
+    public void setStartScreening(LocalDateTime startScreening) {
+        this.startScreening = startScreening;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return id + "," + movieId + "," + startScreening + ","  + clientId + "," + totalPrice + "," + paid + ","+ticketAmount;
+    }
+}
