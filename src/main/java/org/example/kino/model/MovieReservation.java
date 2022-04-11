@@ -2,6 +2,7 @@ package org.example.kino.model;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 
 public class MovieReservation {
 
@@ -50,9 +51,7 @@ public class MovieReservation {
         return totalPrice;
     }
 
-    public boolean czyOplacono() {
-        return paid;
-    }
+    public boolean ifPaid() { return paid; }
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
@@ -82,7 +81,16 @@ public class MovieReservation {
         this.startScreening = startScreening;
     }
 
-
+    public HashMap<String, String> getPropertiesForValidation() {
+        HashMap<String, String> properties = new HashMap<>();
+        properties.put("movieId", Integer.toString(movieId));
+        properties.put("startScreening", startScreening.toString());
+        properties.put("clientId", Integer.toString(clientId));
+        properties.put("totalPrice", Integer.toString(totalPrice));
+        properties.put("paid", Boolean.toString(paid));
+        properties.put("ticketAmount", Integer.toString(ticketAmount));
+        return properties;
+    }
 
     @Override
     public String toString() {

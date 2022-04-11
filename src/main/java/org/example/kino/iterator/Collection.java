@@ -1,4 +1,5 @@
 package org.example.kino.iterator;
 
-public class Collection {
+public interface Collection<T> {
+    Iterator<T> createIterator();
 }
