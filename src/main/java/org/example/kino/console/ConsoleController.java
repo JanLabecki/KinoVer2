@@ -20,6 +20,7 @@ public class ConsoleController {
     Scanner scanner = new Scanner(System.in);
     // renting position service jest fasadą
     ReservationPositionService service = new ReservationPositionService();
+    AddRes addMovieRes;
 
 
     public void Menu() {
@@ -57,8 +58,6 @@ public class ConsoleController {
                 System.out.println("Wpisz studio \n");
                 String studio = scanner.next();
                 service.addMovie(new Movies(title, yearOfPro, ageOfRes, studio));
-
-
             }
 
             if (input == 4) {

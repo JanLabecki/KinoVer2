@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
-public class MovieReservation {
+public class MovieReservation implements Record{
 
     private static int counter = 1;
     private int id;
