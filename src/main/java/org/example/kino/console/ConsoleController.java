@@ -6,6 +6,12 @@ import org.example.kino.model.Movies;
 import org.example.kino.model.Ticket;
 import org.example.kino.model.Client;
 import org.example.kino.model.MovieReservation;
+import org.example.kino.iterator.Iterator;
+import org.example.kino.iterator.Collection;
+import org.example.kino.database.CSVReservationDatabase;
+import org.example.kino.template.AddRes;
+import org.example.kino.template.AddMovieRes;
+
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -17,11 +23,11 @@ public class ConsoleController {
 
 
     public void Menu() {
-        while(true) {
+        while (true) {
             System.out.println("Wybierz akcję \n");
             System.out.println("1. Dodaj klienta \n2. Dodaj bilet \n3. Dodaj film \n4. Dodaj rezerwację \n5. Wyświetl wszystkie rezerwację");
             int input = scanner.nextInt();
-            if(input == 1) {
+            if (input == 1) {
                 System.out.println("Wpisz imię \n");
                 String name = scanner.next();
                 System.out.println("Wpisz nazwisko \n");
@@ -32,7 +38,7 @@ public class ConsoleController {
                 System.out.println("Klient został dodany");
             }
 
-            if(input == 2) {
+            if (input == 2) {
                 System.out.println("Wpisz nazwę rodzaju biletu \n");
                 String type = scanner.next();
                 System.out.println("Wpisz rodzaj napisów \n");
@@ -41,21 +47,22 @@ public class ConsoleController {
                 System.out.println("Bilet został dodany");
             }
 
-            if(input==3) {
+            if (input == 3) {
                 System.out.println("Wpisz tytuł \n");
-                String title =scanner.next();
+                String title = scanner.next();
                 System.out.println("Wpisz rok produkcji \n");
                 Integer yearOfPro = Integer.parseInt(scanner.next());
                 System.out.println("Wpisz ograniczenie wiekowe \n");
                 Integer ageOfRes = Integer.parseInt(scanner.next());
                 System.out.println("Wpisz studio \n");
-                String studio =scanner.next();
+                String studio = scanner.next();
                 service.addMovie(new Movies(title, yearOfPro, ageOfRes, studio));
 
 
             }
 
-            if(input == 4) {
+            if (input == 4) {
+                addMovieRes = new AddMovieRes(CSVReservationDatabase.getInstance("reservationPosition.csv"));
                 System.out.println("Wpisz id filmu \n");
                 int movieId = Integer.parseInt(scanner.next());
                 System.out.println("Wpisz datę rezerwacji \n");
@@ -70,14 +77,19 @@ public class ConsoleController {
                 int clientId = Integer.parseInt(scanner.next());
                 System.out.println("Wpisz ilosc biletow \n");
                 int ticketAmount = Integer.parseInt(scanner.next());
-                service.resMovie(new MovieReservation(movieId, startScreening, clientId, ticketAmount));
+                addMovieRes.addRes(new MovieReservation(movieId, startScreening, clientId, ticketAmount));
                 System.out.println("Pomyślnie dodano rezerwacje");
             }
             if (input == 5) {
-                System.out.println(service.showAllReservationPositions());
+                Collection<MovieReservation> collection = service.showAllReservationPositions();
+                Iterator<MovieReservation> iterator = collection.createIterator();
+                System.out.println(iterator.getCurrent());
+                while (iterator.hasNext()) {
+                    System.out.println(iterator.getNext());
+                }
+
+
             }
-
-
         }
     }
 }

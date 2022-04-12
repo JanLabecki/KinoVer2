@@ -5,6 +5,7 @@ import org.example.kino.database.CSVMovieDatabase;
 import org.example.kino.database.CSVTicketDatabase;
 import org.example.kino.database.CSVClientDatabase;
 import org.example.kino.database.CSVReservationDatabase;
+import org.example.kino.iterator.MovieResCollection;
 import org.example.kino.model.Movies;
 import org.example.kino.model.Ticket;
 import org.example.kino.model.Client;
@@ -72,7 +73,7 @@ public class ReservationPositionService {
         }
     }
 
-    public List<MovieReservation> showAllReservationPositions(){
-        return csvReservationDatabase.loadAllReservationPositions();
+    public MovieResCollection showAllReservationPositions(){
+        return new MovieResCollection (csvReservationDatabase.loadAllReservationPositions());
     }
 }

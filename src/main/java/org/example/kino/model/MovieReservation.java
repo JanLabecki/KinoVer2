@@ -27,10 +27,10 @@ public class MovieReservation {
         this.id = Integer.parseInt(properties[0]);
         this.movieId = Integer.parseInt(properties[1]);
         this.startScreening = LocalDateTime.parse(properties[2]);
-        this.clientId = Integer.parseInt(properties[4]);
-        this.totalPrice = Integer.parseInt(properties[5]);
-        this.paid = Boolean.parseBoolean(properties[6]);
-        this.ticketAmount = Integer.parseInt(properties[7]);
+        this.clientId = Integer.parseInt(properties[3]);
+        this.totalPrice = Integer.parseInt(properties[4]);
+        this.paid = Boolean.parseBoolean(properties[5]);
+        this.ticketAmount = Integer.parseInt(properties[6]);
 
 
     }

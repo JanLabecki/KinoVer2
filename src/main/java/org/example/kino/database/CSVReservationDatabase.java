@@ -34,6 +34,15 @@ public class CSVReservationDatabase {
             e.printStackTrace();
         }
     }
+    public void saveReservationPosition(String csv) {
+        try {
+            FileWriter fileWriter = new FileWriter(fileName, true);
+            fileWriter.write(csv + System.getProperty("line.separator"));
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<MovieReservation>  loadAllReservationPositions() {
         List<String[]> parametersList = new ArrayList<>();
